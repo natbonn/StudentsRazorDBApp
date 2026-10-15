@@ -1,4 +1,5 @@
 ﻿using StudentsApp.Core;
+using StudentsApp.DAO;
 
 namespace StudentsApp
 {
@@ -11,6 +12,7 @@ namespace StudentsApp
             // Add services to the container.
             builder.Services.AddRazorPages();
             builder.Services.AddSingleton<DBHelper>();
+            builder.Services.AddScoped<IStudentDAO, StudentDAOImpl>();
 
             var app = builder.Build();
 
