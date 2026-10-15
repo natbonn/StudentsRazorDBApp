@@ -1,5 +1,8 @@
-﻿using StudentsApp.Core;
+﻿using Microsoft.Extensions.Logging.Console;
+using StudentsApp.Configuration;
+using StudentsApp.Core;
 using StudentsApp.DAO;
+using System.Diagnostics.Contracts;
 
 namespace StudentsApp
 {
@@ -13,6 +16,7 @@ namespace StudentsApp
             builder.Services.AddRazorPages();
             builder.Services.AddSingleton<DBHelper>();
             builder.Services.AddScoped<IStudentDAO, StudentDAOImpl>();
+            builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MapperConfig>());
 
             var app = builder.Build();
 
