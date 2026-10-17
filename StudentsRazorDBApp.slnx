@@ -1,5 +1,7 @@
 <Solution>
   <Folder Name="/Solution Items/">
+    <File Path="../../../Downloads/CLAUDE.md" />
+    <File Path="../../../Downloads/README.md" />
     <File Path=".env" />
     <File Path=".gitignore" />
     <File Path="docker-compose.yml" />

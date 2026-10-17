@@ -1,9 +1,8 @@
-﻿using Microsoft.Extensions.Logging.Console;
-using Serilog;
+﻿using Serilog;
 using StudentsApp.Configuration;
 using StudentsApp.Core;
 using StudentsApp.DAO;
-using System.Diagnostics.Contracts;
+using StudentsApp.Services;
 
 namespace StudentsApp
 {
@@ -13,11 +12,19 @@ namespace StudentsApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // Add serilog info
+            builder.Host.UseSerilog((context, config) =>
+            {
+                config.ReadFrom.Configuration(context.Configuration);
+            });
+
             // Add services to the container.
             builder.Services.AddRazorPages();
 
             builder.Services.AddSingleton<DBHelper>();
             builder.Services.AddScoped<IStudentDAO, StudentDAOImpl>();
+            builder.Services.AddScoped<IStudentService, StudentServiceImpl>();
+
 
             builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MapperConfig>());
 
@@ -27,7 +34,7 @@ namespace StudentsApp
             {
                 options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
                 {
-                    diagnosticContext.Set("UserId", httpContext.User ? Identity?.Name);
+                    diagnosticContext.Set("UserId", httpContext.User?.Identity?.Name);
                     diagnosticContext.Set("RemoteIP", httpContext.Connection.RemoteIpAddress);
                 };
             });

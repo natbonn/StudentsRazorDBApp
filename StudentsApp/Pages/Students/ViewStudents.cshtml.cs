@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using StudentsApp.Models;
-using StudentsAppSQL9Dev.DTO;
-using StudentsAppSQL9Dev.Services;
+using StudentsApp.DTO;
+using StudentsApp.Services;
 
-namespace StudentsAppSQL9Dev.Pages.Students
+namespace StudentsApp.Pages.Students
 {
     public class ViewStudentsModel : PageModel
     {
